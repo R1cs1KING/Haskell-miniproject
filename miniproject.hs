@@ -1,6 +1,8 @@
 import Data.List (sortBy)
 import Data.Function (on)
 
+data LTree = Leaf Char Int | Branch LTree LTree Int deriving Show
+
 frequencies :: [Char] -> [(Char, Int)]
 frequencies [] = []
 frequencies strToCount = sortfrequencies (auxFrequencies strToCount [] [])
@@ -36,11 +38,9 @@ restArgumentList list = map fst list
 restValueList :: [(a, b)] -> [b]
 restValueList list = map snd list
 
---findfun :: [(a, b)] -> f
-
 --although there exist another function called "lookup" which kinda does the same thing
 lookup' :: Eq a => [(a, [Char])] -> a -> [Char]
-lookup [] a = "Value does not exist."
+lookup' [] a = "Value does not exist."
 lookup' l a = 
     if valid l
         then lookupAux l a
